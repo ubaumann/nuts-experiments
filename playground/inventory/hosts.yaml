@@ -1,0 +1,36 @@
+R1:
+  hostname: sandbox-iosxe-recomm-1.cisco.com
+  platform: cisco_iosxe
+  username: developer
+  password: "********"
+  connection_options:
+    scrapli:
+      extras:
+        auth_strict_key: False
+  data:
+    tags:
+      - csr1k
+R2:
+  hostname: sandbox-iosxr-1.cisco.com
+  platform: cisco_iosxr
+  username: admin
+  password: "********"
+  connection_options:
+    scrapli:
+      extras:
+        auth_strict_key: False
+  data:
+    tags:
+      - XRv
+R3:
+  hostname: sandbox-nxos-1.cisco.com
+  platform: cisco_nxos
+  username: admin
+  password: "********"
+  connection_options:
+    scrapli:
+      extras:
+        auth_strict_key: False
+  data:
+    tags:
+      - NXOSv

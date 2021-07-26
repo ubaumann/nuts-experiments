@@ -1,0 +1,16 @@
+- test_class: TestVrfs
+  test_module: nuts_experiments.scrapli_show_vrf
+  test_data:
+    - tag: csr1k
+      vrfs:
+        - mgmt
+        - test
+    - tag: csr1k
+      vrfs:
+        - mgmt
+        - test
+        - test2
+    - tag: NXOSv
+      vrfs:
+        - mgmt
+        

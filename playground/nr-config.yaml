@@ -1,0 +1,8 @@
+inventory:
+  plugin: SimpleInventory
+  options:
+    host_file: "inventory/hosts.yaml"
+runner:
+  plugin: threaded
+  options:
+    num_workers: 100
