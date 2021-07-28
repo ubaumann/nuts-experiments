@@ -6,7 +6,6 @@ from nornir.core.filter import F
 from nornir.core.task import MultiResult, Result
 from nornir_scrapli.tasks import send_command
 
-from nuts.helpers.filters import filter_hosts
 from nuts.helpers.result import AbstractHostResultExtractor, NutsResult
 from nuts.context import NornirNutsContext
 
