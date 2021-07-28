@@ -8,6 +8,7 @@ authors = ["ubaumann <github@m.ubaumann.ch>"]
 python = "^3.8"
 nornir-scrapli = "^2021.1.30"
 nuts = {path = "../nuts"}
+scrapli = {extras = ["genie"], version = "^2021.1.30"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"

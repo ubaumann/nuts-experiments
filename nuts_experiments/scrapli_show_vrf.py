@@ -13,8 +13,7 @@ from nuts.context import NornirNutsContext
 
 class VrfExtractor(AbstractHostResultExtractor):
     def single_transform(self, single_result: MultiResult) -> Dict[str, Dict[str, Any]]:
-        return self._simple_extract(single_result)
-
+        return single_result[0].scrapli_response.genie_parse_output()
 
 
 class VrfContext(NornirNutsContext):
@@ -33,7 +32,7 @@ class VrfContext(NornirNutsContext):
 
     def nuts_extractor(self) -> VrfExtractor:
         return VrfExtractor(self)
-    
+
     def parametrize(self, test_data: Any) -> Any:
         tests = []
         for data in test_data:
@@ -54,5 +53,5 @@ CONTEXT = VrfContext
 class TestVrfs:
     @pytest.mark.nuts("vrfs")
     def test_vrfs(self, single_result, vrfs):
-        for vrf in vrfs:
-            assert vrf in single_result.result, f"does not have vrf {vrf}"
+        device_vrfs = set(single_result.result.get("vrf"))
+        assert set(vrfs).issubset(device_vrfs)
