@@ -1,3 +1,4 @@
+```bash
 ============================= test session starts ==============================
 platform linux -- Python 3.8.10, pytest-6.2.4, py-1.10.0, pluggy-0.13.1 -- /home/urs/.cache/pypoetry/virtualenvs/nuts-experiments-daYRvPSx-py3.8/bin/python
 cachedir: .pytest_cache
@@ -185,3 +186,4 @@ FAILED tests/test_vrf.yaml::TestVrfs::test_vrfs[R1_1] - AssertionError: does ...
 ERROR tests/test_vrf.yaml::TestVrfs::test_vrfs[R3_0] - nuts.helpers.errors.Nu...
 ERROR tests/test_vrf.yaml::TestVrfs::test_vrfs[R3_1] - nuts.helpers.errors.Nu...
 ============== 2 failed, 2 passed, 4 skipped, 2 errors in 25.96s ===============
+```
