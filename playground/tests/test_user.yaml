@@ -1,0 +1,6 @@
+- test_class: TestNapalmUsers
+  test_data:
+    - host: R1
+      username: developer
+    - host: R3
+      username: admin

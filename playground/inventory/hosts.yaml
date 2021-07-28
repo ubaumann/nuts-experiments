@@ -1,8 +1,8 @@
 R1:
   hostname: sandbox-iosxe-recomm-1.cisco.com
-  platform: cisco_iosxe
+  platform: ios
   username: developer
-  password: "********"
+  password: C1sco12345
   connection_options:
     scrapli:
       extras:
@@ -10,11 +10,12 @@ R1:
   data:
     tags:
       - csr1k
+      - csr1knxos
 R2:
   hostname: sandbox-iosxr-1.cisco.com
-  platform: cisco_iosxr
+  platform: iosxr
   username: admin
-  password: "********"
+  password: C1sco12345
   connection_options:
     scrapli:
       extras:
@@ -24,9 +25,9 @@ R2:
       - XRv
 R3:
   hostname: sandbox-nxos-1.cisco.com
-  platform: cisco_nxos
+  platform: nxos_ssh
   username: admin
-  password: "********"
+  password: Admin_1234!
   connection_options:
     scrapli:
       extras:
@@ -34,3 +35,4 @@ R3:
   data:
     tags:
       - NXOSv
+      - csr1knxos

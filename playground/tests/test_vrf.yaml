@@ -5,7 +5,7 @@
       vrfs:
         - mgmt
         - test
-    - tag: csr1k
+    - tag: csr1knxos
       vrfs:
         - mgmt
         - test

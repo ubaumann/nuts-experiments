@@ -130,6 +130,17 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "commonmark"
+version = "0.9.1"
+description = "Python parser for the CommonMark Markdown spec"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.extras]
+test = ["flake8 (==3.7.8)", "hypothesis (==3.55.3)"]
+
+[[package]]
 name = "cryptography"
 version = "3.4.7"
 description = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
@@ -423,15 +434,20 @@ version = "3.0.1"
 description = "Network Unit Testing System Component of NetTowel"
 category = "main"
 optional = false
-python-versions = ">=3.7,<4.0"
+python-versions = "^3.7"
+develop = false
 
 [package.dependencies]
-nornir = ">=3.0.0,<4.0.0"
-nornir-napalm = ">=0.1.1,<0.2.0"
-nornir-netmiko = ">=0.1.1,<0.2.0"
-nornir-utils = ">=0.1.0,<0.2.0"
-pytest = ">=6.1.1,<7.0.0"
-PyYAML = ">=5.3.1,<6.0.0"
+nornir = "^3.0.0"
+nornir-napalm = "^0.1.1"
+nornir-netmiko = "^0.1.1"
+nornir-utils = "^0.1.0"
+pytest = "^6.1.1"
+PyYAML = "^5.3.1"
+
+[package.source]
+type = "directory"
+url = "../nuts"
 
 [[package]]
 name = "packaging"
@@ -528,6 +544,14 @@ dev = ["check-manifest", "pep8", "pyflakes", "twine"]
 test = ["coverage", "mock"]
 
 [[package]]
+name = "pygments"
+version = "2.9.0"
+description = "Pygments is a syntax highlighting package written in Python."
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "pynacl"
 version = "1.4.0"
 description = "Python binding to the Networking and Cryptography (NaCl) library"
@@ -616,6 +640,22 @@ urllib3 = ">=1.21.1,<1.27"
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
+
+[[package]]
+name = "rich"
+version = "10.6.0"
+description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+colorama = ">=0.4.0,<0.5.0"
+commonmark = ">=0.9.0,<0.10.0"
+pygments = ">=2.6.0,<3.0.0"
+
+[package.extras]
+jupyter = ["ipywidgets (>=7.5.1,<8.0.0)"]
 
 [[package]]
 name = "ruamel.yaml"
@@ -806,7 +846,7 @@ pyyaml = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "7318679613bfc5c20dc1d4ff2ee654f384d014d0accb95032fb9feef549c674d"
+content-hash = "c421641566ec44333d2d0fa826d6b17cbd381579c54d0a3acaeebb227e129156"
 
 [metadata.files]
 appdirs = [
@@ -900,6 +940,10 @@ click = [
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
+]
+commonmark = [
+    {file = "commonmark-0.9.1-py2.py3-none-any.whl", hash = "sha256:da2f38c92590f83de410ba1a3cbceafbc74fee9def35f9251ba9a971d6d66fd9"},
+    {file = "commonmark-0.9.1.tar.gz", hash = "sha256:452f9dc859be7f06631ddcb328b6919c67984aca654e5fefb3914d54691aed60"},
 ]
 cryptography = [
     {file = "cryptography-3.4.7-cp36-abi3-macosx_10_10_x86_64.whl", hash = "sha256:3d8427734c781ea5f1b41d6589c293089704d4759e34597dce91014ac125aad1"},
@@ -1069,10 +1113,7 @@ ntc-templates = [
     {file = "ntc_templates-1.7.0-py3-none-any.whl", hash = "sha256:08ffeafd02a1d3e42f4f12f910f0b4c64b93783d76ece186c9a63389403a450b"},
     {file = "ntc_templates-1.7.0.tar.gz", hash = "sha256:4e098f83b35624751f4f6aaa4eed9eefd50a742f3d009c86f4bb22843a6a72fc"},
 ]
-nuts = [
-    {file = "nuts-3.0.1-py3-none-any.whl", hash = "sha256:ad8fcbfb86bc342ea3071aa4a9e072af77c69cf7ebb300aaa8dd2973ea2a1342"},
-    {file = "nuts-3.0.1.tar.gz", hash = "sha256:b1aa4d0b95dc77f22af5f92f16eab55a2b5109d90595fecb3466f8722e24a39d"},
-]
+nuts = []
 packaging = [
     {file = "packaging-21.0-py3-none-any.whl", hash = "sha256:c86254f9220d55e31cc94d69bade760f0847da8000def4dfe1c6b872fd14ff14"},
     {file = "packaging-21.0.tar.gz", hash = "sha256:7dc96269f53a4ccec5c0670940a4281106dd0bb343f47b7471f779df49c2fbe7"},
@@ -1103,6 +1144,10 @@ pycparser = [
 ]
 pyeapi = [
     {file = "pyeapi-0.8.4.tar.gz", hash = "sha256:c33ad1eadd8ebac75f63488df9412081ce0b024c9e1da12a37196a5c60427c54"},
+]
+pygments = [
+    {file = "Pygments-2.9.0-py3-none-any.whl", hash = "sha256:d66e804411278594d764fc69ec36ec13d9ae9147193a1740cd34d272ca383b8e"},
+    {file = "Pygments-2.9.0.tar.gz", hash = "sha256:a18f47b506a429f6f4b9df81bb02beab9ca21d0a5fee38ed15aef65f0545519f"},
 ]
 pynacl = [
     {file = "PyNaCl-1.4.0-cp27-cp27m-macosx_10_10_x86_64.whl", hash = "sha256:ea6841bc3a76fa4942ce00f3bda7d436fda21e2d91602b9e21b7ca9ecab8f3ff"},
@@ -1213,6 +1258,10 @@ regex = [
 requests = [
     {file = "requests-2.26.0-py2.py3-none-any.whl", hash = "sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24"},
     {file = "requests-2.26.0.tar.gz", hash = "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"},
+]
+rich = [
+    {file = "rich-10.6.0-py3-none-any.whl", hash = "sha256:d3f72827cd5df13b2ef7f1a97f81ec65548d4fdeb92cef653234f227580bbb2a"},
+    {file = "rich-10.6.0.tar.gz", hash = "sha256:128261b3e2419a4ef9c97066ccc2abbfb49fa7c5e89c3fe4056d00aa5e9c1e65"},
 ]
 "ruamel.yaml" = [
     {file = "ruamel.yaml-0.16.13-py2.py3-none-any.whl", hash = "sha256:64b06e7873eb8e1125525ecef7345447d786368cadca92a7cd9b59eae62e95a3"},

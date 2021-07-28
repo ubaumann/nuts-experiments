@@ -13,19 +13,14 @@ from nuts.context import NornirNutsContext
 
 class VrfExtractor(AbstractHostResultExtractor):
     def single_transform(self, single_result: MultiResult) -> Dict[str, Dict[str, Any]]:
-        vrfs = self._simple_extract(single_result)
-        return vrfs
+        return self._simple_extract(single_result)
 
-    def single_result(self, nuts_test_entry: Dict[str, Any]) -> NutsResult:
-        tag = nuts_test_entry["tag"]
-
-        ctx = self._nuts_ctx
-        nr = ctx.nornir.filter(F(tags__contains=tag))
-        hosts = nr.inventory.hosts.keys()
-        return NutsResult({ host: self.transformed_result[host] for host in hosts})
 
 
 class VrfContext(NornirNutsContext):
+
+    id_format = "{host}_"
+
     def nuts_task(self) -> Callable[..., Result]:
         return send_command
 
@@ -38,6 +33,19 @@ class VrfContext(NornirNutsContext):
 
     def nuts_extractor(self) -> VrfExtractor:
         return VrfExtractor(self)
+    
+    def parametrize(self, test_data: Any) -> Any:
+        tests = []
+        for data in test_data:
+            if tag := data.get("tag"):
+                if tag == "csr1k":
+                    tests.append({**data, "host": "R1"})
+                if tag == "NXOSv":
+                    tests.append({**data, "host": "R3"})
+                if tag == "csr1knxos":
+                    tests.append({**data, "host": "R1", "id": "R1"})
+                    tests.append({**data, "host": "R3"})
+        return tests
 
 
 CONTEXT = VrfContext
@@ -46,8 +54,5 @@ CONTEXT = VrfContext
 class TestVrfs:
     @pytest.mark.nuts("vrfs")
     def test_vrfs(self, single_result, vrfs):
-        # breakpoint()
-        for host, result in single_result.result.items():
-            result.validate()
-            for vrf in vrfs:
-                assert vrf in result.result, f"{host} does not have vrf {vrf}"
+        for vrf in vrfs:
+            assert vrf in single_result.result, f"does not have vrf {vrf}"
