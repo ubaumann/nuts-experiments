@@ -34,7 +34,6 @@ class VrfContext(NornirNutsContext):
         return VrfExtractor(self)
 
     def parametrize(self, test_data: Any) -> Any:
-
         tests = []
         for data in test_data:
             nr = self.nornir.filter(F(tags__contains=data.get("tag")))
