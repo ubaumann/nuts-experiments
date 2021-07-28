@@ -43,7 +43,7 @@ class VrfContext(NornirNutsContext):
                 if tag == "NXOSv":
                     tests.append({**data, "host": "R3"})
                 if tag == "csr1knxos":
-                    tests.append({**data, "host": "R1", "id": "R1"})
+                    tests.append({**data, "host": "R1"})
                     tests.append({**data, "host": "R3"})
         return tests
 
