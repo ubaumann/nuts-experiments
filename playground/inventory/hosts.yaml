@@ -5,6 +5,7 @@ R1:
   password: C1sco12345
   connection_options:
     scrapli:
+      platform: cisco_iosxe
       extras:
         auth_strict_key: False
   data:
@@ -18,6 +19,7 @@ R2:
   password: C1sco12345
   connection_options:
     scrapli:
+      platform: cisco_iosxr
       extras:
         auth_strict_key: False
   data:
@@ -30,6 +32,7 @@ R3:
   password: Admin_1234!
   connection_options:
     scrapli:
+      platform: cisco_nxos
       extras:
         auth_strict_key: False
   data:

@@ -47,5 +47,5 @@ CONTEXT = VrfContext
 class TestVrfs:
     @pytest.mark.nuts("vrfs")
     def test_vrfs(self, single_result, vrfs):
-        device_vrfs = set(single_result.result.get("vrf"))
+        device_vrfs = set(single_result.result.get("vrf", {}))
         assert set(vrfs).issubset(device_vrfs)
