@@ -34,16 +34,12 @@ class VrfContext(NornirNutsContext):
         return VrfExtractor(self)
 
     def parametrize(self, test_data: Any) -> Any:
+
         tests = []
         for data in test_data:
-            if tag := data.get("tag"):
-                if tag == "csr1k":
-                    tests.append({**data, "host": "R1"})
-                if tag == "NXOSv":
-                    tests.append({**data, "host": "R3"})
-                if tag == "csr1knxos":
-                    tests.append({**data, "host": "R1"})
-                    tests.append({**data, "host": "R3"})
+            nr = self.nornir.filter(F(tags__contains=data.get("tag")))
+            for host in nr.inventory.hosts.keys():
+                tests.append({**data, "host": host})
         return tests
 
 
